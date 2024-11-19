@@ -8,12 +8,12 @@ import Dashboard from './routes/Dashboard';
 function App() {
   return (
     <div className="App">
-      <Router>
+      {/* <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      </Router>
+      </Router> */}
       {/* <Dashboard /> */}
     </div>
   );
