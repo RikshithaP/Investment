@@ -1,20 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Components/Login';
-import Home from './Components/Home';
-import Dashboard from './Components/Dashboard';
+import Home from './routes/Home';
+import Dashboard from './routes/Dashboard';
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router> */}
-    <Dashboard/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+      {/* <Dashboard /> */}
     </div>
   );
 }
