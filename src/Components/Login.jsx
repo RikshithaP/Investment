@@ -1,43 +1,113 @@
-import React, { useState } from 'react'
-import './Login.css'
-import user_icon from '../assets/person.png'
-import email_icon from '../assets/email.png'
-import password_icon from '../assets/password.png'
+import React, { useState } from "react";
+import "./UniqueLogin.css";
 
-const Login = () => {
+function Login({ onClose }) {
+  const [isSignup, setIsSignup] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [enteredOtp, setEnteredOtp] = useState("");
 
-  const[action,setAction] = useState("Sign Up");
+  const handleSendOtp = () => {
+    if (email) {
+      setOtp("123456"); // Mock OTP
+      setOtpSent(true);
+      alert(`OTP sent to ${email}`);
+    } else {
+      alert("Please enter your email.");
+    }
+  };
+
+  const handleVerifyOtp = () => {
+    if (otp === enteredOtp) {
+      alert("OTP Verified. Redirecting to dashboard...");
+      window.location.href = "/dashboard";
+    } else {
+      alert("Invalid OTP. Please try again.");
+    }
+  };
 
   return (
-    <div className='container'>
-      <div className="header">
-        <div className="text">{action}</div>
-        <div className="underline"></div>
-      </div>
-      <div className="inputs">
-        {action==="Login"?<div></div>:
-        <div className="input">
-        
-          <img src={user_icon} alt="" />
-          <input type="text" placeholder='Name' />
-        </div>}
-        <div className="input">
-          <img src={email_icon} alt="" />
-          <input type="email" placeholder='Email' />
+    <div className="unique-login-overlay">
+      <div className="unique-login-container">
+        <div className="unique-login-header">
+          <h2>
+            {isForgotPassword
+              ? "Forgot Password"
+              : isSignup
+              ? "Sign Up"
+              : "Login"}
+          </h2>
+          <button className="unique-login-close-btn" onClick={onClose}>
+            &times;
+          </button>
         </div>
-        <div className="input">
-          <img src={password_icon} alt="" />
-          <input type="password" placeholder='Password' />
+        <div className="unique-login-content">
+          {isForgotPassword ? (
+            otpSent ? (
+              <>
+                <label>Enter OTP</label>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  value={enteredOtp}
+                  onChange={(e) => setEnteredOtp(e.target.value)}
+                />
+                <button
+                  onClick={handleVerifyOtp}
+                  className="unique-primary-btn"
+                >
+                  Verify OTP
+                </button>
+              </>
+            ) : (
+              <>
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <button onClick={handleSendOtp} className="unique-primary-btn">
+                  Send OTP
+                </button>
+              </>
+            )
+          ) : (
+            <>
+              <label>Email Address</label>
+              <input type="email" placeholder="Enter email" />
+              <label>Password</label>
+              <input type="password" placeholder="Enter password" />
+              <button className="unique-primary-btn">
+                {isSignup ? "Sign Up" : "Login"}
+              </button>
+              <button className="unique-google-btn">Login with Google</button>
+              <p>
+                {isSignup
+                  ? "Already have an account?"
+                  : "Don't have an account?"}{" "}
+                <span
+                  className="unique-toggle-link"
+                  onClick={() => setIsSignup(!isSignup)}
+                >
+                  {isSignup ? "Login" : "Sign Up"}
+                </span>
+              </p>
+              <p
+                className="unique-forgot-password"
+                onClick={() => setIsForgotPassword(true)}
+              >
+                Forgot Password?
+              </p>
+            </>
+          )}
         </div>
-      </div>
-      {action==="Login"?<div></div>:
-      <div className="forget-password">Lost Password? <span>Click Here!</span></div>}
-      <div className="submit-container">
-        <div className={action==="Login"?"submit gray":"submit"} onClick={() => {setAction("Sign Up")}}>Sign Up</div>
-        <div className={action==="Sign Up"?"submit gray":"submit"} onClick={() => {setAction("Login")}}>Login</div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

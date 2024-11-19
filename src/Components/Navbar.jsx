@@ -1,16 +1,26 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 import "./Navbar.css";
+import Login from "./Login";
 
 const Navbar = () => {
-    const navigate = useNavigate();
-    return (
-        <nav className="navbar">
-            <div className="logo">Groww</div>
-            <input type="text" placeholder="What are you looking for today?" className="search-bar" />
-            <button className="login-btn" onClick={() => navigate('/login')}>Login/Register</button>
-        </nav>
-    );
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+  const openLogin = () => setIsLoginOpen(true);
+  const closeLogin = () => setIsLoginOpen(false);
+  return (
+    <nav className="navbar">
+      <div className="logo">Groww</div>
+      <input
+        type="text"
+        placeholder="What are you looking for today?"
+        className="searchbar"
+      />
+      <button className="login-btn" onClick={openLogin}>
+        Login/Register
+      </button>
+      {isLoginOpen && <Login onClose={closeLogin} />}
+    </nav>
+  );
 };
 
 export default Navbar;

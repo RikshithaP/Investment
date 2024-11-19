@@ -1,11 +1,14 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import "./Home.css";
 import illustration from "../assets/bg.png";
 import Navbar from "../Components/Navbar";
+import Login from "../Components/Login";
 
 const Home = () => {
-  const navigate = useNavigate();
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+  const openLogin = () => setIsLoginOpen(true);
+  const closeLogin = () => setIsLoginOpen(false);
   return (
     <main>
       <Navbar />
@@ -13,12 +16,12 @@ const Home = () => {
         <div className="main-text">
           <h1>All things finance, right here.</h1>
           <p>Built for a growing India.</p>
-          <button
-            className="get-started-btn"
-            onClick={() => navigate("/login")}
-          >
-            Get started
+          <button onClick={openLogin} className="get-started-btn">
+            Get Started
           </button>
+
+          {/* Render Login Popup */}
+          {isLoginOpen && <Login onClose={closeLogin} />}
         </div>
         <div className="illustration">
           <img
