@@ -6,7 +6,6 @@ import Login from "../Components/Login";
 
 const Home = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-
   const openLogin = () => setIsLoginOpen(true);
   const closeLogin = () => setIsLoginOpen(false);
   return (
@@ -19,8 +18,6 @@ const Home = () => {
           <button onClick={openLogin} className="get-started-btn">
             Get Started
           </button>
-
-          {/* Render Login Popup */}
           {isLoginOpen && <Login onClose={closeLogin} />}
         </div>
         <div className="illustration">
