@@ -3,9 +3,11 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 5rem;
   color: #333;
+  background-color: white; 
+  padding: 2rem; 
 }
+
 
 .main-text h1 {
   font-size: 2.5rem;

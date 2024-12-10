@@ -1,0 +1,17 @@
+.funds-page {
+    background-color: #2b2b2b;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .funds-page h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  .funds-page p {
+    font-size: 16px;
+    color: #ccc;
+  }
+  

@@ -1,9 +1,23 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
 .dashboard-page {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #1e1e1e;
   color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; 
 }
+
 
 .header {
   background-color: #282828;
@@ -19,14 +33,9 @@
   font-weight: bold;
 }
 
-.dashboard-page {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
 .dashboard-container {
   display: flex;
+  flex-grow: 1; 
   margin-top: 20px;
 }
 
@@ -102,7 +111,6 @@
 }
 
 .nav-item.active {
-  background-color: #00c9a7;
   color: #000;
   font-weight: bold;
 }
@@ -112,61 +120,42 @@
   color: #fff;
 }
 
-.welcome-section h2 {
-  margin: 0 0 20px;
-  font-size: 24px;
-}
-
-.summary-section {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.equity,
-.commodity {
-  width: 48%;
-  padding: 15px;
+.market-overview-section {
   background-color: #333;
-  border-radius: 5px;
-  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
-.equity h3,
-.commodity h3 {
-  margin-bottom: 10px;
-}
-
-.link-style-button {
-  background: none;
-  border: none;
-  color: #00c9a7;
-  cursor: pointer;
-  margin-top: 10px;
-  text-decoration: underline;
-}
-
-.link-style-button:hover {
+.market-overview-section h3 {
+  margin-bottom: 15px;
   color: #fff;
 }
-
-.holdings-section {
+.summary-section{
+  display: flex;
+  padding-bottom: 20px;
+}
+.commodity{
+  margin-left: 20px;
+}
+.commodity, .equity{
+  width: max-content;
+  width: 500%; 
+  display: inline-block; 
+  text-align: center;
+}
+.holdings-section,
+.equity,
+.commodity {
   background-color: #333;
   padding: 15px;
   border-radius: 5px;
 }
 
-.holdings-section h3 {
-  margin: 0 0 15px;
-}
-
-.pnl {
-  font-size: 18px;
+.holdings-section h3,
+.equity h3,
+.commodity h3 {
   margin-bottom: 15px;
-}
-
-.chart {
-  margin-top: 15px;
 }
 
 .chart-bar {
@@ -189,30 +178,4 @@
 .investment {
   font-size: 14px;
   color: #ccc;
-}
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .main-dashboard {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .summary-section {
-    flex-direction: column;
-  }
-
-  .equity,
-  .commodity {
-    width: 100%;
-    margin-bottom: 20px;
-  }
 }

@@ -1,7 +1,58 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Line } from "react-chartjs-2";
 import "./Dashboard.css";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Dashboard = () => {
+  const marketData = {
+    labels: ["Jan 24", "Apr 24", "Jul 24", "Oct 24"],
+    datasets: [
+      {
+        label: "NIFTY 50",
+        data: [17500, 18500, 19000, 20000], 
+        fill: false,
+        borderColor: "#00c9a7",
+        tension: 0.4,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          color: "#555",
+        },
+        ticks: {
+          color: "#ccc",
+        },
+      },
+    },
+  };
+
   return (
     <div className="dashboard-page">
       <header className="header">
@@ -45,15 +96,26 @@ const Dashboard = () => {
           </ul>
         </div>
         <div className="main-dashboard">
-          {/* Navigation Menu */}
           <nav className="nav-menu">
             <ul className="nav-options">
-              <li className="nav-item active">Dashboard</li>
-              <li className="nav-item">Orders</li>
-              <li className="nav-item">Holdings</li>
-              <li className="nav-item">Positions</li>
-              <li className="nav-item">Bids</li>
-              <li className="nav-item">Funds</li>
+              <li className="nav-item active">
+                <Link to="/">Dashboard</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/orders">Orders</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/holdings">Holdings</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/positions">Positions</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/bids">Bids</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/funds">Funds</Link>
+              </li>
             </ul>
           </nav>
 
@@ -95,6 +157,10 @@ const Dashboard = () => {
               </div>
               <div className="investment">Investment value: ₹655.65</div>
             </div>
+          </div>
+          <div className="market-overview-section">
+            <h3>Market Overview</h3>
+            <Line data={marketData} options={options} />
           </div>
         </div>
       </div>

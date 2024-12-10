@@ -1,0 +1,17 @@
+.bids-page {
+    background-color: #2b2b2b;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .bids-page h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  .bids-page p {
+    font-size: 16px;
+    color: #ccc;
+  }
+  
